@@ -27,26 +27,23 @@
     function flipcards(){
         if(!PrimeiroCard){
             PrimeiroCard = this
+            PrimeiroCard.classList.add ('vip');
             PrimeiroCard.classList.add('flip')
             console.log(PrimeiroCard.dataset.identificacao,'primeiro')
             
         }
         else{
             SegundoCard = this
+            SegundoCard.classList.add('vip')
             SegundoCard.classList.add('flip')
             console.log(SegundoCard.dataset.identificacao,'segundo')
             VerificarCards()
-            
-            
+                   
         }
-
-       
-
-        
+     
     }
     
     function VerificarCards(){
-        
         
         iguais = PrimeiroCard.dataset.identificacao === SegundoCard.dataset.identificacao
         if(iguais == true){
@@ -58,6 +55,8 @@
             VerificarFim()
         }
         else{
+            PrimeiroCard.classList.remove ('vip');
+            SegundoCard.classList.remove ('vip');
             Desflipar()
         }
         

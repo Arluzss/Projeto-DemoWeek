@@ -45,27 +45,16 @@
         
     }
     function obaoba(x){
-        x.classList.add ('vip');
+       // x.classList.add ('vip');
         //console.log(x)
     }
     function VerificarCards(){
         
-        let teste = document.querySelectorAll('#click div');
+        
         iguais = PrimeiroCard.dataset.identificacao === SegundoCard.dataset.identificacao
         if(iguais == true){
-            
-            for(let i = 0; i < teste.length; i++){
-                if(teste[i] == PrimeiroCard){
-                    for(let j = 0;){
-                    teste[i].addEventListener('click1', obaoba(teste[i]))
-                    console.log(teste[i])
-                    }
-                    // console.log( document.getElementById('clicks'))
-                    
-                    
-                }
-            }
-            
+            PrimeiroCard.classList.add ('vip');
+            SegundoCard.classList.add ('vip');
             PrimeiroCard = null
             SegundoCard = null
             Pares ++

@@ -44,20 +44,27 @@
 
         
     }
+    function obaoba(x){
+        x.classList.add ('vip');
+        //console.log(x)
+    }
     function VerificarCards(){
         
         let teste = document.querySelectorAll('#click div');
-        for(let i = 0; i < teste.length; i++){
-            if(teste[i] == PrimeiroCard){
-            console.log(teste[i])
-            console.log( document.getElementById('clicks'))
-            document.getElementById('click').style.pointerEvents = 'none';
-            
-            }
-        }
         iguais = PrimeiroCard.dataset.identificacao === SegundoCard.dataset.identificacao
         if(iguais == true){
             
+            for(let i = 0; i < teste.length; i++){
+                if(teste[i] == PrimeiroCard){
+                    for(let j = 0;){
+                    teste[i].addEventListener('click1', obaoba(teste[i]))
+                    console.log(teste[i])
+                    }
+                    // console.log( document.getElementById('clicks'))
+                    
+                    
+                }
+            }
             
             PrimeiroCard = null
             SegundoCard = null
@@ -67,10 +74,10 @@
         else{
             Desflipar()
         }
- 
+        
         
     }
-   
+    
     function Desflipar(){
         setTimeout(() => {
             PrimeiroCard.classList.remove('flip')
@@ -82,7 +89,7 @@
             console.log(PrimeiroCard)
         }, 700);
     }
-
+    
     function VerificarFim(){
         setTimeout(() => {
             if(Pares == 6){
@@ -91,8 +98,8 @@
             
         }, 700);
     }
-
- 
+    
+    
     
     
     function misturarCards(array) {
@@ -105,22 +112,23 @@
     }
     
     misturarCards(images)
-
+    
+  
 </script>
 
 <style>
-    .titi {
+    div {
         pointer-events: none;
         cursor:default;
     }
 </style>
 
 <div class="game-display">
-
-  {#each images as {Src,Id} }
+    
+    {#each images as {Src,Id} }
         
     <div id="click" class="flip-card">
-        <div on:click={flipcards} class="flip-card-inner titi" data-identificacao={Id}>
+        <div id="click1"on:click={flipcards} class="flip-card-inner" data-identificacao={Id}>
             <div class="flip-card-front">
                 <img src="./images/carta-costa.png" alt="card-costa">
             </div>

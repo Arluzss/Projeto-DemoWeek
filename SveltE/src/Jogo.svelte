@@ -44,10 +44,7 @@
 
         
     }
-    function obaoba(x){
-       // x.classList.add ('vip');
-        //console.log(x)
-    }
+    
     function VerificarCards(){
         
         

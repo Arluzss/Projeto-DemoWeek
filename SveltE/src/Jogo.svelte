@@ -104,7 +104,7 @@
 
 
 <div class="game-display">
-    
+ 
     {#each images as {Src,Id} }
         
     <div id="click" class="flip-card">

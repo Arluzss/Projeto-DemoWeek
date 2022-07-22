@@ -2,12 +2,18 @@
     <link rel="stylesheet" href="/styles/inicial.css">
 </svelte:head>
 <script>
-    import MenuBotao from './Botoes/MenuBotao.svelte'
+    import ComoJogarBotao from './Botoes/ComoJogarBotao.svelte';
+    import JogarBotao from './Botoes/JogarBotao.svelte'
+    import SobreBotao from './Botoes/SobreBotao.svelte'
 </script>
 <div class="Initconteudo">
-    <div class="logo">
-        <img src="/images/inicial-unicornio.png" alt="aa">
+    <div class="titulo">
+        <h1>JOGO DA MEMORIA</h1>
     </div>
-    <MenuBotao />
+    <div class="botoes">
+        <JogarBotao />
+        <SobreBotao />
+        <ComoJogarBotao />
+    </div>
 
 </div>

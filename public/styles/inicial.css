@@ -3,8 +3,49 @@
     margin: 0;
     box-sizing: border-box;
 }
+h1{
+    color: black;
+    font-weight: bold;
+    font-size: 50pt;
+}
+.Initconteudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titulo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-img{
-    max-width: 450px;
-    
+}
+
+.botoes{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-top: 30px;
+    padding: 20px 20px;
+    width: 500px;
+    height: 250px;
+}
+
+.botao{
+    font-weight: 900;
+    border-radius: 30px;
+    box-shadow: 5px 12px 15px black;    
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 33%;
+}
+.botao:hover{
+    color: #ffa300;
+    transform: scale(1.05);
+    transition: all 0.5 ease;
 }

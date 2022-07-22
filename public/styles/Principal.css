@@ -6,29 +6,11 @@
     padding: 0;
     
 }
-body{
-    overflow-y: hidden;
-    width: 100vw;
-    height: 100vh;
-    background-color:#33302E;
+body{  
+    user-select: none;
+    background-color:rgb(204, 205, 206);
 }
 
-.botoes{
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    gap: 12px;
-}
-.botao{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    background-color: #33302E;
-
-}
 section{
     display: flex;
     align-items: center;

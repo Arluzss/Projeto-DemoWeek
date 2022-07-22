@@ -2,7 +2,9 @@
     <link rel="stylesheet" href="/styles/jogo.css">
 </svelte:head>
 <script>
-
+    import MenuBotao from './Botoes/MenuBotao.svelte';
+    import PaginaInicialBotao from './Botoes/PaginaInicialBotao.svelte'
+    import Jogar2Botao from './Botoes/Jogar2Botao.svelte'
     let images = [
         {Class: 'card-frente', Src:'./images/alce-frente.png', Id:'alce'},
         {Class: 'card-frente', Src:'./images/caveira-frente.png', Id:'caveira'},
@@ -21,31 +23,25 @@
     ] 
     let PrimeiroCard
     let SegundoCard
-    let iguais
     let Pares = 6
-    let contador = 0
+
     function flipcards(){
-        let vid = document.getElementById('audio')   
-        let div = document.getElementById('audio1')
         if(!PrimeiroCard){
-           vid.play();
-           PrimeiroCard = this
-           PrimeiroCard.classList.add ('vip')
-           PrimeiroCard.classList.add('flip')
-           SegundoCard = true
-           console.log(PrimeiroCard.dataset.identificacao,'primeiro')
-           
-           
+            PrimeiroCard = this
+            PrimeiroCard.classList.add ('travar')
+            PrimeiroCard.classList.add('flip')
+            SegundoCard = true
+            document.getElementById('SomFlip1').play()
+            
+            
         }
         else if(SegundoCard == true){
-            div.play();
             SegundoCard = this
-            console.log(SegundoCard.dataset.identificacao,'segundo')
-            SegundoCard.classList.add ('vip')
+            SegundoCard.classList.add ('travar')
             SegundoCard.classList.add('flip')
+            document.getElementById('SomFlip2').play()
             VerificarCards()
-            
-            
+
         }
 
 
@@ -54,21 +50,14 @@
         
     }
     function VerificarCards(){
-        iguais = PrimeiroCard.dataset.identificacao === SegundoCard.dataset.identificacao
-        if(iguais == true){
+
+        if(PrimeiroCard.dataset.identificacao === SegundoCard.dataset.identificacao){
             PrimeiroCard = null
             SegundoCard = null
             Pares --
             VerificarFim()
         }
         else{
-            contador++
-            console.log(contador)
-            if(contador > 7){
-                let vapo = document.getElementById('video')
-                vapo.play();
-                document.getElementById('indo').style.display = "flex"
-            }
             Desflipar()
         }
  
@@ -76,34 +65,30 @@
 
     }
     function Desflipar(){
-        let vid = document.getElementById('audio2');
         setTimeout(() => {
-            document.getElementById('indo').style.display = "none"
-            vid.play();
-            PrimeiroCard.classList.remove('flip');
-            SegundoCard.classList.remove('flip');
-            PrimeiroCard.classList.remove ('vip');
-            SegundoCard.classList.remove ('vip');
+            PrimeiroCard.classList.remove('flip')
+            SegundoCard.classList.remove('flip')
+            PrimeiroCard.classList.remove ('travar');
+            SegundoCard.classList.remove ('travar');
+            document.getElementById('SomFlip3').play()
             PrimeiroCard = null
             SegundoCard = null
-            console.log(iguais)
-            console.log(PrimeiroCard)
         }, 1000);
     }
 
     function VerificarFim(){
-        let a = document.getElementById('video1')
         setTimeout(() => {
             if(Pares == 0){
-                a.play();
-                alert("Parabens! Você Venceu");
-                
+                document.querySelector('.TelaVitoria').style.display='flex'
+                document.querySelector('.paresinfo').style.color='rgb(204, 205, 206)'
+                document.querySelector('#vitoria').play()
+
             }
             
         }, 1000);
     }
 
-    
+ 
     
     
     function misturarCards(array) {
@@ -116,58 +101,22 @@
     }
     
     misturarCards(images)
-    
-    
-    
-   
+
+
 </script>
+<audio id="SomFlip1" src="/audio/Flip.mp3" preload="auto"></audio>
+<audio id="SomFlip2" src="/audio/Flip2.mp3" preload="auto"></audio>
+<audio id="SomFlip3" src="/audio/desflipar.mp3" preload="auto"></audio>
+<audio id="vitoria" src="/audio/vitoria.mp3" preload="auto"></audio>
+
 
 <div class="conteudo-jogo">
-    <div class="infos">
-        <div class="tempo">
-            <h1>Tempo da Tentativa: 150s</h1>
-
-        </div>
-        <div class="pares">
-            <h1>Pares Restantes: {Pares}</h1>
-        </div>
+    <div class="pares">
+        <MenuBotao />
+        <h1 class="paresinfo">Pares Restantes: {Pares}</h1>
     </div>
-
-
-
-    <div style="display:none;" >
-        <audio id="audio" src="audios/sound-cart.mp3"></audio>
-        <audio id="audio1" src="audios/sound-cart1.mp3"></audio>
-        <audio id="audio2"src="audios/sound-cart2.mp3"></audio>
-    </div>
-
-
-
-
-    <div id="indo" style="display: none ;">
-
-        <video style="display: none ;" id="video1"
-           src="/audios/musicpica.mp4">
-        <track default
-               kind="captions"
-               srclang="en"
-                                 />
-        Sorry, your browser doesn't support embedded videos.
-    </video>
-
-        <video id="video"
-           src="/audios/theroqui.mp4">
-        <track default
-               kind="captions"
-               srclang="en"
-                                 />
-        Sorry, your browser doesn't support embedded videos.
-    </video>
-    </div>
-
-
-
     <div class="game-display">
+    
       {#each images as {Src,Id} }
     
         <div class="flip-card">
@@ -181,5 +130,13 @@
             </div>
         </div>
         {/each}
+    </div>
+    <div class="TelaVitoria">
+        <h1>Parabéns! Você concluiu está fase.</h1>
+        <p style="font-size: 25pt;">Você pode aumentar a dificuldade ou retornar para a página inicial</p>
+        <div class="escolhas">
+            <PaginaInicialBotao />
+            <Jogar2Botao />
+        </div>
     </div>
 </div>
